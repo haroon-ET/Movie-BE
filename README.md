@@ -2,7 +2,11 @@
 
 ## Description
 
+### Backend Tech Stack
+
 The Movie App Backend is a robust and efficient platform developed using the Nest.js framework and MySQL database. This application provides functionalities to create, edit, and manage movie information.
+The server is deployed on AWS EC2 machine with docker-compose setup running Node 18 and MySQL 8.
+
 
 ## Installation for Developers
 
