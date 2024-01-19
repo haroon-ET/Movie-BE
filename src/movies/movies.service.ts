@@ -32,7 +32,7 @@ export class MoviesService {
   async findAll(limit: number, offset: number) {
     const findMovies = await this.movieRepository.find({
       take: limit,
-      skip: offset,
+      skip: offset * limit,
     });
 
     if (findMovies.length === 0) {
