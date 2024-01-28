@@ -10,6 +10,7 @@ import {
   Query,
   Put,
   UseGuards,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { MoviesService } from './movies.service';
 import { CreateMovieDto } from './dto/create-movie.dto';
@@ -30,10 +31,10 @@ export class MoviesController {
   @UseGuards(JwtAuthGuard)
   @Get()
   async findAll(
-    @Query('offset') offset: number = 0,
+    @Query('page', ParseIntPipe) page: number = 0,
     @Query('limit') limit: number = 8,
   ) {
-    return this.moviesService.findAll(limit, offset);
+    return this.moviesService.findAll(limit, page);
   }
 
   @UseGuards(JwtAuthGuard)

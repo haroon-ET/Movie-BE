@@ -29,16 +29,23 @@ export class MoviesService {
     return newMovie;
   }
 
-  async findAll(limit: number, offset: number) {
+  async findAll(limit: number, page: number) {
     const findMovies = await this.movieRepository.find({
       take: limit,
-      skip: offset * limit,
+      skip: page * limit,
     });
+
+    const count = await this.movieRepository.count({});
 
     if (findMovies.length === 0) {
       return 'Your movie list is empty';
     }
-    return findMovies;
+    const totalPages = Math.ceil(count / limit);
+
+    // Next page still has some issues condition working incorrectly
+    const nextPage = page < totalPages ? page + 1 : null;
+
+    return { movies: findMovies, count, current: page, next: nextPage };
   }
 
   async findOne(id: number) {
