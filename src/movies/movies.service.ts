@@ -40,12 +40,13 @@ export class MoviesService {
     if (findMovies.length === 0) {
       return 'Your movie list is empty';
     }
-    const totalPages = Math.ceil(count / limit);
 
-    // Next page still has some issues condition working incorrectly
-    const nextPage = page < totalPages ? page + 1 : null;
+    // const totalPages = Math.ceil(count / limit);
+    // // totalPages -1 is implemented because our page number starts from 0.
+    // const nextPage = page < totalPages - 1 ? page + 1 : null;
+    // return { movies: findMovies, count, current: page, next: nextPage };
 
-    return { movies: findMovies, count, current: page, next: nextPage };
+    return { movies: findMovies, count };
   }
 
   async findOne(id: number) {
