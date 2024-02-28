@@ -38,7 +38,7 @@ export class S3Service {
       params,
     );
 
-    const imageUrl = `${process.env.S3_URL}/${key}`;
+    const imageUrl = `${process.env.S3_URL}${key}`;
     return { preSignedUrl, url: imageUrl };
   }
 }
